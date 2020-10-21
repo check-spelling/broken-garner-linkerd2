@@ -4,5 +4,4 @@ description: A helm chart containing the resources needed by the Linkerd CNI plu
 kubeVersion: ">=1.13.0-0"
 icon: https://linkerd.io/images/logo-only-200h.png
 name: "linkerd2-cni"
-version: 0.1.0
-
+version: 0.1.1
