@@ -23,7 +23,9 @@ sudo apt-get install helm
 
 # validate charts
 for CHART_DIR in ${CHART_DIRS}; do
-  if [[ "$CHART_DIR" =~ \S*(add-ons)\S* ]]; then
+  # Charts in the addons directory and the patch chart are meant to have their values overridden. 
+  # Evaluating them alone will fail; they must be evaluated as a dependency of other charts.
+  if [[ "$CHART_DIR" =~ \S*(add-ons|patch)\S* ]]; then
     echo "Skipping evaluation of $CHART_DIR."
   else
     echo "Evaluating chart in $CHART_DIR"
