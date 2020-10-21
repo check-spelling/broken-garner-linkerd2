@@ -7,12 +7,12 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: linkerd-grafana-config
-  namespace: {{.Values.global.namespace}}
+  namespace: {{ .Values.global.namespace }}
   labels:
-    {{.Values.global.controllerComponentLabel}}: grafana
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
+    {{ .Values.global.controllerComponentLabel }}: grafana
+    {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
   annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
+    {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
 data:
   grafana.ini: |-
     instance_name = linkerd-grafana
@@ -44,9 +44,9 @@ data:
       access: proxy
       orgId: 1
       {{- if .Values.global.prometheusUrl }}
-      url: {{.Values.global.prometheusUrl}}
+      url: {{ .Values.global.prometheusUrl }}
       {{- else }}
-      url: http://linkerd-prometheus.{{.Values.global.namespace}}.svc.{{.Values.global.clusterDomain}}:9090
+      url: http://linkerd-prometheus.{{ .Values.global.namespace }}.svc.{{ .Values.global.clusterDomain }}:9090
       {{- end }}
       isDefault: true
       jsonData:
@@ -71,16 +71,16 @@ kind: Service
 apiVersion: v1
 metadata:
   name: linkerd-grafana
-  namespace: {{.Values.global.namespace}}
+  namespace: {{ .Values.global.namespace }}
   labels:
-    {{.Values.global.controllerComponentLabel}}: grafana
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
+    {{ .Values.global.controllerComponentLabel }}: grafana
+    {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
   annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
+    {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
 spec:
   type: ClusterIP
   selector:
-    {{.Values.global.controllerComponentLabel}}: grafana
+    {{ .Values.global.controllerComponentLabel }}: grafana
   ports:
   - name: http
     port: 3000
@@ -93,32 +93,32 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
+    {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
   labels:
     app.kubernetes.io/name: grafana
     app.kubernetes.io/part-of: Linkerd
-    app.kubernetes.io/version: {{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
-    {{.Values.global.controllerComponentLabel}}: grafana
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
+    app.kubernetes.io/version: {{ default .Values.global.linkerdVersion .Values.global.controllerImageVersion }}
+    {{ .Values.global.controllerComponentLabel }}: grafana
+    {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
   name: linkerd-grafana
-  namespace: {{.Values.global.namespace}}
+  namespace: {{ .Values.global.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{.Values.global.controllerComponentLabel}}: grafana
-      {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
-      {{- include "partials.proxy.labels" .Values.global.proxy | nindent 6}}
+      {{ .Values.global.controllerComponentLabel }}: grafana
+      {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
+      {{- include "partials.proxy.labels" .Values.global.proxy | nindent 6 }}
   template:
     metadata:
       annotations:
-        {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
-        {{- include "partials.proxy.annotations" .Values.global.proxy| nindent 8}}
+        {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
+        {{- include "partials.proxy.annotations" .Values.global.proxy | nindent 8 }}
       labels:
-        {{.Values.global.controllerComponentLabel}}: grafana
-        {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
-        {{.Values.global.workloadNamespaceLabel}}: {{.Values.global.namespace}}
-        {{- include "partials.proxy.labels" .Values.global.proxy | nindent 8}}
+        {{ .Values.global.controllerComponentLabel }}: grafana
+        {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
+        {{ .Values.global.workloadNamespaceLabel }}: {{ .Values.global.namespace }}
+        {{- include "partials.proxy.labels" .Values.global.proxy | nindent 8 }}
     spec:
       {{- if .Values.tolerations -}}
       {{- include "linkerd.tolerations" . | nindent 6 }}
@@ -132,8 +132,8 @@ spec:
         # see https://github.com/grafana/grafana/issues/20096
         - name: GODEBUG
           value: netdns=go
-        image: {{.Values.image.name}}:{{ default (default .Values.global.linkerdVersion .Values.global.controllerImageVersion) .Values.image.tag}}
-        imagePullPolicy: {{.Values.global.imagePullPolicy}}
+        image: {{ .Values.image.name }}:{{ default (default .Values.global.linkerdVersion .Values.global.controllerImageVersion) .Values.image.tag }}
+        imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         livenessProbe:
           httpGet:
             path: /api/health

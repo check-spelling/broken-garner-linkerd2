@@ -1,26 +1,26 @@
 {{- define "partials.proxy-init" -}}
 args:
 - --incoming-proxy-port
-- {{.Values.global.proxy.ports.inbound | quote}}
+- {{ .Values.global.proxy.ports.inbound | quote }}
 - --outgoing-proxy-port
-- {{.Values.global.proxy.ports.outbound | quote}}
+- {{ .Values.global.proxy.ports.outbound | quote }}
 - --proxy-uid
-- {{.Values.global.proxy.uid | quote}}
+- {{ .Values.global.proxy.uid | quote }}
 - --inbound-ports-to-ignore
-- {{.Values.global.proxy.ports.control}},{{.Values.global.proxy.ports.admin}}{{ternary (printf ",%s" .Values.global.proxyInit.ignoreInboundPorts) "" (not (empty .Values.global.proxyInit.ignoreInboundPorts)) }}
+- {{ .Values.global.proxy.ports.control }},{{ .Values.global.proxy.ports.admin }}{{ternary ( printf ",%s" .Values.global.proxyInit.ignoreInboundPorts) "" (not (empty .Values.global.proxyInit.ignoreInboundPorts)) }}
 {{- if hasPrefix "linkerd-" .Values.global.proxy.component }}
 - --outbound-ports-to-ignore
-- {{ternary (printf "443,%s" .Values.global.proxyInit.ignoreOutboundPorts) (quote "443") (not (empty .Values.global.proxyInit.ignoreOutboundPorts)) }}
+- {{ternary ( printf "443,%s" .Values.global.proxyInit.ignoreOutboundPorts) (quote "443") (not (empty .Values.global.proxyInit.ignoreOutboundPorts)) }}
 {{- else if .Values.global.proxyInit.ignoreOutboundPorts }}
 - --outbound-ports-to-ignore
-- {{.Values.global.proxyInit.ignoreOutboundPorts | quote}}
+- {{ .Values.global.proxyInit.ignoreOutboundPorts | quote }}
 {{- end }}
 {{- if .Values.global.proxyInit.closeWaitTimeoutSecs }}
 - --timeout-close-wait-secs
-- {{ .Values.global.proxyInit.closeWaitTimeoutSecs | quote}}
+- {{ .Values.global.proxyInit.closeWaitTimeoutSecs | quote }}
 {{- end }}
-image: {{.Values.global.proxyInit.image.name}}:{{.Values.global.proxyInit.image.version}}
-imagePullPolicy: {{.Values.global.proxyInit.image.pullPolicy}}
+image: {{ .Values.global.proxyInit.image.name }}:{{ .Values.global.proxyInit.image.version }}
+imagePullPolicy: {{ .Values.global.proxyInit.image.pullPolicy }}
 name: linkerd-init
 {{ include "partials.resources" .Values.global.proxyInit.resources }}
 securityContext:
@@ -54,12 +54,12 @@ terminationMessagePolicy: FallbackToLogsOnError
 volumeMounts:
 {{- end -}}
 {{- if not .Values.global.cniEnabled }}
-- mountPath: {{.Values.global.proxyInit.xtMountPath.mountPath}}
-  name: {{.Values.global.proxyInit.xtMountPath.name}}
+- mountPath: {{ .Values.global.proxyInit.xtMountPath.mountPath }}
+  name: {{ .Values.global.proxyInit.xtMountPath.name }}
 {{- end -}}
 {{- if .Values.global.proxyInit.saMountPath }}
-- mountPath: {{.Values.global.proxyInit.saMountPath.mountPath}}
-  name: {{.Values.global.proxyInit.saMountPath.name}}
-  readOnly: {{.Values.global.proxyInit.saMountPath.readOnly}}
+- mountPath: {{ .Values.global.proxyInit.saMountPath.mountPath }}
+  name: {{ .Values.global.proxyInit.saMountPath.name }}
+  readOnly: {{ .Values.global.proxyInit.saMountPath.readOnly }}
 {{- end -}}  
 {{- end -}}

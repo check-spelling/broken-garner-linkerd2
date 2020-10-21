@@ -155,7 +155,7 @@ development purposes. It can be enabled globally i.e Control plane components
 and their proxies by using the `--control-plane-tracing` installation flag.
 
 This will configure all the components to send the traces at
-`linkerd-collector.{{.Namespace}}.svc.{{.ClusterDomain}}:55678`
+`linkerd-collector.{{ .Namespace }}.svc.{{ .ClusterDomain }}:55678`
 
 ```bash
 

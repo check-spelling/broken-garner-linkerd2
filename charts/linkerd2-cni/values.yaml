@@ -6,14 +6,14 @@ outboundProxyPort: 4140
 ignoreInboundPorts: ""
 ignoreOutboundPorts: ""
 createdByAnnotation: linkerd.io/created-by
-cniPluginImage:   "gcr.io/linkerd-io/cni-plugin"
+cniPluginImage: "gcr.io/linkerd-io/cni-plugin"
 cniPluginVersion: linkerdVersionValue
-logLevel:         info
-portsToRedirect:  ""
-proxyUID:         2102
-destCNINetDir:    "/etc/cni/net.d"
-destCNIBinDir:    "/opt/cni/bin"
-useWaitFlag:      false
+logLevel: info
+portsToRedirect: ""
+proxyUID: 2102
+destCNINetDir: "/etc/cni/net.d"
+destCNIBinDir: "/opt/cni/bin"
+useWaitFlag: false
 priorityClassName: ""
 
 # namespace annotation and labels - do not edit

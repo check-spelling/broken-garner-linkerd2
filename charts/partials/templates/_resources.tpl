@@ -3,19 +3,19 @@ resources:
   {{- if or .cpu.limit .memory.limit }}
   limits:
     {{- with .cpu.limit }}
-    cpu: {{. | quote}}
+    cpu: {{ . | quote }}
     {{- end }}
     {{- with .memory.limit }}
-    memory: {{. | quote}}
+    memory: {{ . | quote }}
     {{- end }}
   {{- end }}
   {{- if or .cpu.request .memory.request }}
   requests:
     {{- with .cpu.request }}
-    cpu: {{. | quote}}
+    cpu: {{ . | quote }}
     {{- end }}
     {{- with .memory.request }}
-    memory: {{. | quote}}
+    memory: {{ . | quote }}
     {{- end }}
   {{- end }}
 {{- end }}

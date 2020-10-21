@@ -1,22 +1,18 @@
 ---
-###
-### Service Profile Validator
-###
----
 kind: Service
 apiVersion: v1
 metadata:
   name: linkerd-sp-validator
-  namespace: {{.Values.global.namespace}}
+  namespace: {{ .Values.global.namespace }}
   labels:
-    {{.Values.global.controllerComponentLabel}}: sp-validator
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
+    {{ .Values.global.controllerComponentLabel }}: sp-validator
+    {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
   annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
+    {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
 spec:
   type: ClusterIP
   selector:
-    {{.Values.global.controllerComponentLabel}}: sp-validator
+    {{ .Values.global.controllerComponentLabel }}: sp-validator
   ports:
   - name: sp-validator
     port: 443
@@ -29,20 +25,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
+    {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
   labels:
     app.kubernetes.io/name: sp-validator
     app.kubernetes.io/part-of: Linkerd
-    app.kubernetes.io/version: {{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
-    {{.Values.global.controllerComponentLabel}}: sp-validator
-    {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
+    app.kubernetes.io/version: {{ default .Values.global.linkerdVersion .Values.global.controllerImageVersion }}
+    {{ .Values.global.controllerComponentLabel }}: sp-validator
+    {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
   name: linkerd-sp-validator
-  namespace: {{.Values.global.namespace}}
+  namespace: {{ .Values.global.namespace }}
 spec:
-  replicas: {{.Values.controllerReplicas}}
+  replicas: {{ .Values.controllerReplicas }}
   selector:
     matchLabels:
-      {{.Values.global.controllerComponentLabel}}: sp-validator
+      {{ .Values.global.controllerComponentLabel }}: sp-validator
   {{- if .Values.enablePodAntiAffinity }}
   strategy:
     rollingUpdate:
@@ -54,13 +50,13 @@ spec:
         {{- if empty .Values.global.cliVersion }}
         checksum/config: {{ include (print $.Template.BasePath "/sp-validator-rbac.yaml") . | sha256sum }}
         {{- end }}
-        {{.Values.global.createdByAnnotation}}: {{default (printf "linkerd/helm %s" .Values.global.linkerdVersion) .Values.global.cliVersion}}
-        {{- include "partials.proxy.annotations" .Values.global.proxy| nindent 8}}
+        {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
+        {{- include "partials.proxy.annotations" .Values.global.proxy | nindent 8 }}
       labels:
-        {{.Values.global.controllerComponentLabel}}: sp-validator
-        {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
-        {{.Values.global.workloadNamespaceLabel}}: {{.Values.global.namespace}}
-        {{- include "partials.proxy.labels" .Values.global.proxy | nindent 8}}
+        {{ .Values.global.controllerComponentLabel }}: sp-validator
+        {{ .Values.global.controllerNamespaceLabel }}: {{ .Values.global.namespace }}
+        {{ .Values.global.workloadNamespaceLabel }}: {{ .Values.global.namespace }}
+        {{- include "partials.proxy.labels" .Values.global.proxy | nindent 8 }}
     spec:
       {{- if .Values.tolerations -}}
       {{- include "linkerd.tolerations" . | nindent 6 }}
@@ -73,9 +69,9 @@ spec:
       containers:
       - args:
         - sp-validator
-        - -log-level={{.Values.global.controllerLogLevel}}
-        image: {{.Values.controllerImage}}:{{default .Values.global.linkerdVersion .Values.global.controllerImageVersion}}
-        imagePullPolicy: {{.Values.global.imagePullPolicy}}
+        - -log-level={{ .Values.global.controllerLogLevel }}
+        image: {{ .Values.controllerImage }}:{{ default .Values.global.linkerdVersion .Values.global.controllerImageVersion }}
+        imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         livenessProbe:
           httpGet:
             path: /ping
@@ -96,7 +92,7 @@ spec:
         {{- include "partials.resources" .Values.spValidatorResources | nindent 8 }}
         {{- end }}
         securityContext:
-          runAsUser: {{.Values.controllerUID}}
+          runAsUser: {{ .Values.controllerUID }}
         volumeMounts:
         - mountPath: /var/run/linkerd/tls
           name: tls
