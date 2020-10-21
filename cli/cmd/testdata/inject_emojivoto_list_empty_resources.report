@@ -1,6 +1,0 @@
-
-deployment "web" injected
-deployment "emoji" injected
-document missing "kind" field, skipped
-document missing "kind" field, skipped
-

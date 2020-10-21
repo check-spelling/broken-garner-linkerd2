@@ -1,6 +1,0 @@
-
-deployment "redis" injected
-
-
-deployment "nginx" injected
-
