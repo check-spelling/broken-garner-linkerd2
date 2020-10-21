@@ -1,0 +1,7 @@
+# For a full list of configuration options visit https://github.com/helm/chart-testing/blob/master/pkg/config/test_config.yaml
+helm-extra-args: --timeout 600
+validate-yaml: true
+validate-chart-schema: true
+check-version-increment: true
+debug: true
+target-branch: main
