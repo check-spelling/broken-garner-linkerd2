@@ -23,5 +23,10 @@ sudo apt-get install helm
 
 # validate charts
 for CHART_DIR in ${CHART_DIRS}; do
-  helm template "${CHART_DIR}" | ./kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBERNETES_VERSION#v}" --schema-location "${SCHEMA_LOCATION}"
+  if [[ "$CHART_DIR" =~ \S*(add-ons)\S* ]]; then
+    echo "Skipping evaluation of $CHART_DIR."
+  else
+    echo "Evaluating chart in $CHART_DIR"
+    helm template "${CHART_DIR}" --dependency-update | ./kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBERNETES_VERSION#v}" --schema-location "${SCHEMA_LOCATION}"
+  fi
 done
