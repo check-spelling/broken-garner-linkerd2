@@ -7,3 +7,4 @@ namespace: linkerd-multicluster
 logLevel: info
 serviceMirrorRetryLimit: 3
 serviceMirrorUID: 2103
+targetClusterName: "default"
