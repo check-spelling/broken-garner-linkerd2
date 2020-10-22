@@ -1049,7 +1049,7 @@ metadata:
     linkerd.io/control-plane-ns: test-ns
 `,
 				`
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: serviceprofiles.linkerd.io
@@ -1269,7 +1269,7 @@ metadata:
     linkerd.io/control-plane-ns: test-ns
 `,
 				`
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: serviceprofiles.linkerd.io
@@ -1498,7 +1498,7 @@ metadata:
     linkerd.io/control-plane-ns: test-ns
 `,
 				`
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: serviceprofiles.linkerd.io
@@ -1736,7 +1736,7 @@ metadata:
     linkerd.io/control-plane-ns: test-ns
 `,
 				`
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: serviceprofiles.linkerd.io
@@ -2283,7 +2283,7 @@ metadata:
   name: cluster-role-binding
   labels:
     linkerd.io/control-plane-ns: test-ns`,
-			`apiVersion: apiextensions.k8s.io/v1beta1
+			`apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: custom-resource-definition

@@ -22,7 +22,7 @@ metadata:
   name: dep-name
   namespace: dep-ns
 `, `
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: fakecrd.linkerd.io
@@ -96,7 +96,7 @@ metadata:
   name: dep-name
   namespace: dep-ns
 `, `
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: fakecrd.linkerd.io
@@ -383,7 +383,7 @@ spec:
 		},
 		{
 			`
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: fakecrd.linkerd.io
