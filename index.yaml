@@ -3,6 +3,32 @@ entries:
   linkerd2:
   - apiVersion: v1
     appVersion: edge-XX.X.X
+    created: "2021-01-06T21:20:41.079027978Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: |
+      Linkerd gives you observability, reliability, and security
+      for your microservices — with no code change required.
+    digest: 21c70e174b28e66bfcc42fccaf4203267ba42f7d8f6635d9c32e89a8b259317d
+    home: https://linkerd.io
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - service-mesh
+    kubeVersion: '>=1.13.0-0'
+    maintainers:
+    - email: cncf-linkerd-dev@lists.cncf.io
+      name: Linkerd authors
+      url: https://linkerd.io/
+    name: linkerd2
+    sources:
+    - https://github.com/linkerd/linkerd2/
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/linkerd2-0.1.1-garner/linkerd2-0.1.1-garner.tgz
+    version: 0.1.1-garner
+  - apiVersion: v1
+    appVersion: edge-XX.X.X
     created: "2021-01-06T20:56:42.870490983Z"
     dependencies:
     - name: partials
