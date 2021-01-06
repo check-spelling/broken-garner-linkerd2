@@ -5,7 +5,7 @@
 # Fields that should be common with the core control plane
 
 # -- control plane version. See Proxy section for proxy version
-linkerdVersion: &linkerd_version linkerdVersionValue
+linkerdVersion: &linkerd_version stable-2.9.1
 
 # -- Default Docker Registry
 defaultRegistry: &default_registry ghcr.io/linkerd
