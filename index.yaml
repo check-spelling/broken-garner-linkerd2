@@ -1,0 +1,78 @@
+apiVersion: v1
+entries:
+  linkerd2:
+  - apiVersion: v1
+    appVersion: edge-XX.X.X
+    created: "2021-01-06T20:56:42.870490983Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: |
+      Linkerd gives you observability, reliability, and security
+      for your microservices — with no code change required.
+    digest: 9d525a8fa6571d6e9fceca31c7b771ed33f34608e2a0006cefd66c4a64f87c9c
+    home: https://linkerd.io
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - service-mesh
+    kubeVersion: '>=1.13.0-0'
+    maintainers:
+    - email: cncf-linkerd-dev@lists.cncf.io
+      name: Linkerd authors
+      url: https://linkerd.io/
+    name: linkerd2
+    sources:
+    - https://github.com/linkerd/linkerd2/
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/linkerd2-0.1.0/linkerd2-0.1.0.tgz
+    version: 0.1.0
+  linkerd2-cni:
+  - apiVersion: v1
+    appVersion: edge-XX.X.X
+    created: "2021-01-06T20:56:42.982384196Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: |
+      Linkerd is a *service mesh*, designed to give platform-wide observability,
+      reliability, and security without requiring configuration or code changes. The
+      Linkerd [CNI plugin](https://linkerd.io/2/features/cni/) takes care of setting
+      up your pod's network so  incoming and outgoing traffic is proxied through the
+      data plane.
+    digest: cbd7860aee5cd13aa2b5bbce4defa34bbbdd460835bf93b2c49c2a0bfffaa240
+    icon: https://linkerd.io/images/logo-only-200h.png
+    kubeVersion: '>=1.13.0-0'
+    name: linkerd2-cni
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/linkerd2-cni-0.1.0/linkerd2-cni-0.1.0.tgz
+    version: 0.1.0
+  partials:
+  - apiVersion: v1
+    created: "2021-01-06T20:56:43.108333534Z"
+    description: |
+      A Helm chart containing Linkerd partial templates,
+      depended by the 'linkerd' and 'patch' charts.
+    digest: 84565067cb4cdbcf09f6d4cb71caf006950a635a424378537a2ec174222dbbcc
+    name: partials
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/partials-0.1.0/partials-0.1.0.tgz
+    version: 0.1.0
+  patch:
+  - apiVersion: v1
+    created: "2021-01-06T20:56:43.250056091Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: This chart generates the JSON patch necessary to inject the proxy container into pods
+    digest: 83ac124a71dad2ff9e5c0dba244c436fd863779977a4d662694d6d31d135ac51
+    home: https://linkerd.io
+    name: patch
+    sources:
+    - https://github.com/linkerd/linkerd2/
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/patch-0.1.0/patch-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-01-06T20:56:42.76014176Z"
