@@ -1,4 +1,4 @@
-{{if .Values.gateway -}}
+{{ if .Values.gateway -}}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -139,4 +139,4 @@ apiVersion: v1
 metadata:
   name: {{ .Values.gatewayName }}
   namespace: {{ .Values.namespace }}
-{{end -}}
+{{ end -}}

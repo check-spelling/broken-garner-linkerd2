@@ -15,5 +15,5 @@
 {{ define "script-tags" }}
   {{ if not .Contents.Error }}
     <script type="text/javascript" src="{{.Contents.PathPrefix}}dist/index_bundle.js" async></script>
-  {{end}}
-{{end}}
+  {{ end }}
+{{ end }}

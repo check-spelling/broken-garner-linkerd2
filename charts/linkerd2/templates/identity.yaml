@@ -1,4 +1,4 @@
-{{if .Values.identity -}}
+{{ if .Values.identity -}}
 {{ if and (.Values.identity.issuer) (eq .Values.identity.issuer.scheme "linkerd.io/tls") -}}
 ---
 kind: Secret
@@ -12,11 +12,11 @@ metadata:
   annotations:
     {{ .Values.global.createdByAnnotation }}: {{ default ( printf "linkerd/helm %s" .Values.global.linkerdVersion ) .Values.global.cliVersion }}
     {{- if .Values.identity.issuer.crtExpiryAnnotation }}
-    {{ .Values.identity.issuer.crtExpiryAnnotation }}: {{required "Please provide the identity issuer certificate expiry date" .Values.identity.issuer.crtExpiry }}
+    {{ .Values.identity.issuer.crtExpiryAnnotation }}: {{ required "Please provide the identity issuer certificate expiry date" .Values.identity.issuer.crtExpiry }}
     {{- end }}
 data:
-  crt.pem: {{b64enc (required "Please provide the identity issuer certificate" .Values.identity.issuer.tls.crtPEM | trim) }}
-  key.pem: {{b64enc (required "Please provide the identity issue private key" .Values.identity.issuer.tls.keyPEM | trim) }}
+  crt.pem: {{ b64enc (required "Please provide the identity issuer certificate" .Values.identity.issuer.tls.crtPEM | trim) }}
+  key.pem: {{ b64enc (required "Please provide the identity issue private key" .Values.identity.issuer.tls.keyPEM | trim) }}
 {{- end }}
 ---
 kind: Service
@@ -143,4 +143,4 @@ spec:
       - {{- include "partials.proxyInit.volumes.xtables" . | indent 8 | trimPrefix (repeat 7 " ") }}
       {{ end -}}
       - {{- include "partials.proxy.volumes.identity" . | indent 8 | trimPrefix (repeat 7 " ") }}
-{{end -}}
+{{ end -}}

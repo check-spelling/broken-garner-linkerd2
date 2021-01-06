@@ -9,7 +9,7 @@ env:
 - name: LINKERD2_PROXY_LOG_FORMAT
   value: {{ .Values.global.proxy.logFormat | default "plain" }}
 - name: LINKERD2_PROXY_DESTINATION_SVC_ADDR
-  value: {{ternary "localhost.:8086" ( printf "linkerd-dst.%s.svc.%s:8086" .Values.global.namespace .Values.global.clusterDomain) (eq .Values.global.proxy.component "linkerd-destination") }}
+  value: {{ ternary "localhost.:8086" ( printf "linkerd-dst.%s.svc.%s:8086" .Values.global.namespace .Values.global.clusterDomain) (eq .Values.global.proxy.component "linkerd-destination") }}
 {{ if .Values.global.proxy.destinationGetNetworks -}}
 - name: LINKERD2_PROXY_DESTINATION_GET_NETWORKS
   value: "{{ .Values.global.proxy.destinationGetNetworks }}"
@@ -32,13 +32,13 @@ env:
   value: 0.0.0.0:{{ .Values.global.proxy.ports.inbound }}
 {{ if .Values.global.proxy.isGateway -}}
 - name: LINKERD2_PROXY_INBOUND_GATEWAY_SUFFIXES
-  value: {{printf "svc.%s." .Values.global.clusterDomain }}
+  value: {{ printf "svc.%s." .Values.global.clusterDomain }}
 {{ end -}}
 - name: LINKERD2_PROXY_DESTINATION_GET_SUFFIXES
-  value: {{printf "svc.%s." .Values.global.clusterDomain }}
+  value: {{ printf "svc.%s." .Values.global.clusterDomain }}
 - name: LINKERD2_PROXY_DESTINATION_PROFILE_SUFFIXES
   {{- $internalDomain := printf "svc.%s." .Values.global.clusterDomain }}
-  value: {{ternary "." $internalDomain .Values.global.proxy.enableExternalProfiles }}
+  value: {{ ternary "." $internalDomain .Values.global.proxy.enableExternalProfiles }}
 - name: LINKERD2_PROXY_INBOUND_ACCEPT_KEEPALIVE
   value: 10000ms
 - name: LINKERD2_PROXY_OUTBOUND_CONNECT_KEEPALIVE
@@ -75,7 +75,7 @@ env:
   value: /var/run/secrets/kubernetes.io/serviceaccount/token
 - name: LINKERD2_PROXY_IDENTITY_SVC_ADDR
   {{- $identitySvcAddr := printf "linkerd-identity.%s.svc.%s:8080" .Values.global.namespace .Values.global.clusterDomain }}
-  value: {{ternary "localhost.:8080" $identitySvcAddr (eq .Values.global.proxy.component "linkerd-identity") }}
+  value: {{ ternary "localhost.:8080" $identitySvcAddr (eq .Values.global.proxy.component "linkerd-identity") }}
 - name: _pod_sa
   valueFrom:
     fieldRef:
