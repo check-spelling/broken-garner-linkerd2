@@ -5,6 +5,7 @@ metadata:
   name: linkerd-config
   namespace: {{.Values.global.namespace}}
   labels:
+    foo: bar
     {{.Values.global.controllerComponentLabel}}: controller
     {{.Values.global.controllerNamespaceLabel}}: {{.Values.global.namespace}}
   annotations:
