@@ -1,5 +1,32 @@
 apiVersion: v1
 entries:
+  linkerd-viz:
+  - apiVersion: v1
+    appVersion: edge-XX.X.X
+    created: "2021-01-07T21:43:48.510018502Z"
+    dependencies:
+    - name: partials
+      repository: file://../partials
+      version: 0.1.0
+    description: |
+      Linkerd Viz extension contains the observability and visualization
+      components that can be integrated directly.
+    digest: 28295a1bde4f2055ade6e391c2954584c231b0d6bf21cd7634f5d70386034aa0
+    home: https://linkerd.io
+    icon: https://linkerd.io/images/logo-only-200h.png
+    keywords:
+    - service-mesh
+    kubeVersion: '>=1.13.0-0'
+    maintainers:
+    - email: cncf-linkerd-dev@lists.cncf.io
+      name: Linkerd authors
+      url: https://linkerd.io/
+    name: linkerd-viz
+    sources:
+    - https://github.com/linkerd/linkerd2/
+    urls:
+    - https://github.com/GarnerCorp/linkerd2/releases/download/linkerd-viz-0.1.1/linkerd-viz-0.1.1.tgz
+    version: 0.1.1
   linkerd2:
   - apiVersion: v1
     appVersion: edge-XX.X.X
