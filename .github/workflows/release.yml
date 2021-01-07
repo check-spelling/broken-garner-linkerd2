@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'charts/**'
+      - 'viz/charts/**'
 
 jobs:
   release:
