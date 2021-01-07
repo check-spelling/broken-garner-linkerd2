@@ -4,7 +4,7 @@ controllerComponentLabel: linkerd.io/control-plane-component
 # image)
 controllerImage: ghcr.io/linkerd/controller
 # -- Tag for the Service Mirror container Docker image
-controllerImageVersion: stable-2.9.1
+controllerImageVersion: edge-20.12.4
 # --  Annotation label for the proxy create. Do not edit.
 createdByAnnotation: linkerd.io/created-by
 # -- The port used for liveliness probing 
