@@ -12,7 +12,7 @@ name: "linkerd-viz"
 sources:
 - https://github.com/linkerd/linkerd2/
 # this version will be updated by the CI before publishing the Helm tarball
-version: 0.1.2
+version: 0.1.3
 icon: https://linkerd.io/images/logo-only-200h.png
 maintainers:
   - name: Linkerd authors
