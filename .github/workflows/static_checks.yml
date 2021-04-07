@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Go lint
       run: bin/lint --verbose
   go_format:
@@ -29,7 +29,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Format
       run: bin/fmt
   proto_diff:
@@ -43,7 +43,7 @@ jobs:
         run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install unzip
       - name: Checkout code
         # actions/checkout@v2
-        uses: actions/checkout@722adc6
+        uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
       - name: Diff proto files
         run: bin/protoc-diff
   shellcheck:
@@ -65,10 +65,10 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Chocolatey - lint
       # devblackops/github-action-psscriptanalyzer@v2.3.0
-      uses: devblackops/github-action-psscriptanalyzer@819c15c
+      uses: devblackops/github-action-psscriptanalyzer@819c15c7d02dec0611fe3ded6f8e259b0b925754
       env:
         # https://github.com/devblackops/github-action-psscriptanalyzer/pull/3/files
         INPUT_FAILONWARNING: 1
@@ -82,7 +82,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Markdown lint
       run: bin/markdownlint-all
   chart_docs_diff:
@@ -91,6 +91,6 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Check docs for diff
       run: bin/helm-docs-diff

@@ -18,7 +18,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Set environment variables from scripts
       run: |
         . bin/_tag.sh
@@ -29,14 +29,14 @@ jobs:
         echo "DOCKER_BUILDKIT_CACHE=${{ runner.temp }}/.buildx-cache" >> $GITHUB_ENV
     - name: Cache docker layers
       # actions/cache@v2.0.0
-      uses: actions/cache@b820478
+      uses: actions/cache@b8204782bbb5f872091ecc5eb9cb7d004e35b1fa
       with:
         path: ${{ env.DOCKER_BUILDKIT_CACHE }}
         key: ${{ runner.os }}-buildx-${{ matrix.target }}-${{ env.TAG }}
         restore-keys: ${{ runner.os }}-buildx-${{ matrix.target }}-
     - name: Set up Docker Buildx
       # crazy-max/ghaction-docker-buildx@v3.2.0
-      uses: crazy-max/ghaction-docker-buildx@552c9de
+      uses: crazy-max/ghaction-docker-buildx@552c9de485482d9bbaa6fa035ee55e518e1e3cb9
     - name: Build & Push Multi Arch Images
       env:
         DOCKER_TRACE: 1
@@ -66,7 +66,7 @@ jobs:
     - name: Upload artifact
       if: matrix.target == 'cli-bin'
       # actions/upload-artifact@v1
-      uses: actions/upload-artifact@3446296
+      uses: actions/upload-artifact@3446296876d12d4e3a0f3145a3c87e67bf0a16b5
       with:
         name: image-archives
         path: /home/runner/archives
@@ -79,7 +79,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Try to load cached Go modules
       # actions/cache@v1.1.2
       uses: actions/cache@70655ec
@@ -114,7 +114,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Try to load cached Go modules
       # actions/cache@v1.1.2
       uses: actions/cache@70655ec
@@ -144,7 +144,7 @@ jobs:
     - name: Checkout code
       #if: startsWith(github.ref, 'refs/tags/stable')
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Try to load cached Go modules
       #if: startsWith(github.ref, 'refs/tags/stable')
       # actions/cache@v1.1.2
@@ -197,7 +197,7 @@ jobs:
     - name: Checkout code
       if: startsWith(github.ref, 'refs/tags/stable')
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Chocolatey - update nuspec
       if: startsWith(github.ref, 'refs/tags/stable')
       run: |
@@ -225,7 +225,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Set environment variables from scripts
       run: |
         . bin/_tag.sh
@@ -286,7 +286,7 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Set environment variables from scripts
       run: |
         . bin/_tag.sh
@@ -316,10 +316,10 @@ jobs:
     steps:
     - name: Checkout code
       # actions/checkout@v2
-      uses: actions/checkout@722adc6
+      uses: actions/checkout@722adc63f1aa60a57ec37892e133b1d319cae598
     - name: Configure gsutils
       # linkerd/linkerd2-action-gcloud@v1.0.1
-      uses: linkerd/linkerd2-action-gcloud@308c4df
+      uses: linkerd/linkerd2-action-gcloud@308c4df7314264c90d240e77e27d0d875d3c8ec1
       with:
         cloud_sdk_service_account_key: ${{ secrets.LINKERD_SITE_TOKEN }}
         gcp_project: ${{ secrets.LINKERD_SITE_PROJECT }}
