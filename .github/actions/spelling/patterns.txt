@@ -1,0 +1,39 @@
+# See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-patterns
+
+# testdata
+(?:caBundle|\.pem): [0-9a-zA-Z=]+
+"trustAnchorsPem":"[^"]*"
+(?:-----)?BEGIN [A-Z ]* KEY(?:-----)?[0-9a-zA-Z/\\+=]*(?:-----)?END [A-Z ]* KEY(?:-----)?
+# cli/cmd/*_test.go:
+\\b
+# pods
+(?:linkerd-[a-z-]+|books|hello|controller|vote-bot|emoji|web|voting)-[0-9a-f]*-[0-9a-z]*
+"?name"?: "?[0-9a-z]+-[0-9a-f]*(?:-[0-9a-z]*|)(?:"|\b)
+# Git
+GitCommit:\\"[0-9a-z]{40}\\"
+# github
+https://[a-z-]+\.githubusercontent\.com/[-a-zA-Z0-9?&=_\/.]*
+\bgithub\.com/(?:[^/]+/){1,3}[^/]*\b
+# Google
+/docs\.google\.com/[a-z]+/d/(?:e/|)[0-9a-zA-Z_-]+/
+https://groups\.google\.com/d/topic/[^/]+/[a-zA-Z0-9]+/discussion
+# youtube
+https?://(?:(?:www\.|)youtube\.com|youtu.be)/(?:embed/|)[-a-zA-Z0-9?&=]*
+# url escapes
+\%[0-9A-F]{2}
+# colors
+(?:0[Xx]|\\x|[Uu]\+|#)[0-9A-Fa-fGgRr]{2,}[Uu]?[Ll]{0,2}\b
+# <word>v1
+v1(?:\b|(?=[a-z]))
+# L5D
+L5D|l5d
+# k3d
+k3d
+# curl
+\bcurl(?:\s+-[a-zA-Z]+)+
+# tar
+\btar(?:\s+-[a-zA-Z]+|\s[a-z]+)+
+# ignore long runs of a single character:
+#(?:\b|(?<=\W))([A-Za-z])\1{3,}(?:\b|(?!\w))
+# ignore long runs of a single character:
+\b([A-Za-z])\g{-1}{3,}\b
